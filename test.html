@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Business Store</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 60px 20px 20px; /* top padding navbar ke liye */
+      background-color: #f0fdf4;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #065f46;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .navbar h1 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #065f46;
+        flex-direction: column;
+        display: none;
+        padding: 10px 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Mobile Responsive Navbar -->
+  <div class="navbar">
+    <h1>Karhali Machinery Store</h1>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="dealership.html">Dealership</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+    </div>
+  </div>
+
+  <!-- ✅ Baaki page ka content -->
+  <h1>Business Store</h1>
+  <p>This is a test file to see if HTML is working.</p>
+
+  <script>
+    function toggleNav() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #d4fcd4;
+      color: #111;
+      padding: 20px;
+      margin-top: 70px; /* Navbar ke liye space */
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #065f46;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .navbar h1 {
+      font-size: 1.2rem;
+      margin: 0;
+      color: white;
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #065f46;
+        flex-direction: column;
+        display: none;
+        padding: 10px 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+
+    /* Cart styles */
+    h1 {
+      text-align: center;
+      color: #006400 !important;
+    }
+
+    .cart-item {
+      background: #fff;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #111;
+    }
+
+    .cart-item p {
+      margin: 0;
+    }
+
+    #total {
+      font-size: 1.2rem;
+      text-align: right;
+      margin-top: 20px;
+      color: #006400 !important;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #3b82f6;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    #pay-button {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 24px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #pay-button:hover {
+      background-color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Karhali Machinery Store</h1>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="dealership.html">Dealership</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+    </div>
+  </div>
+
+  <h1>Your Cart</h1>
+  <div id="cart-container"></div>
+  <div id="total"></div>
+  <button id="pay-button">Proceed to Payment</button>
+  <a href="index.html" class="back-link">⬅️ Back to Store</a>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const container = document.getElementById('cart-container');
+    const totalEl = document.getElementById('total');
+    let total = 0;
+
+    if (cart.length === 0) {
+      container.innerHTML = "<p>Your cart is empty.</p>";
+      document.getElementById("pay-button").style.display = "none";
+    } else {
+      cart.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <p><strong>${item.name}</strong> (x${item.quantity})</p>
+          <p>Rs. ${item.price * item.quantity}</p>
+        `;
+        container.appendChild(div);
+        total += item.price * item.quantity;
+      });
+
+      totalEl.textContent = `Total: Rs. ${total}`;
+    }
+
+    document.getElementById("pay-button").addEventListener("click", () => {
+      alert("Redirecting to payment gateway (demo)");
+    });
+  </script>
+
+</body>
+</html>

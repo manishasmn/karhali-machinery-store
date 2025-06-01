@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dealership Request - Karhali Machinery Store</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+    
+    body {
+      font-family: 'Comfortaa', cursive, sans-serif;
+      background-color: #d4fcd4;
+      margin: 0;
+      padding: 60px 0 0; /* navbar ke liye top padding */
+      color: #111;
+    }
+
+    /* ===== Navbar styles ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background-color: #065f46;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      font-family: 'Comfortaa', cursive, sans-serif;
+    }
+    .navbar h1 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #34d399;
+    }
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background-color: #065f46;
+        flex-direction: column;
+        display: none;
+        padding: 10px 0;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-links a {
+        padding: 10px 20px;
+        border-top: 1px solid #0f766e;
+      }
+    }
+
+    /* ===== Your original styles ===== */
+    .page-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 100vh;
+    }
+
+    .left-side {
+      flex: 1;
+      background: url('https://images.unsplash.com/photo-1581090700227-1e8e180fefdd') no-repeat center center;
+      background-size: cover;
+      min-height: 300px;
+      position: relative;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: slideIn 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateX(-20px); opacity: 0.7; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    .left-side .friendly-text {
+      background: rgba(0,0,0,0.5);
+      padding: 15px 20px;
+      border-radius: 12px;
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 90%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .right-side {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1a202c;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .form-container {
+      background-color: #fff;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-weight: 400;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 700;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1rem;
+      font-family: 'Comfortaa', cursive, sans-serif;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #34d399;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: 'Comfortaa', cursive, sans-serif;
+    }
+
+    button:hover {
+      background-color: #10b981;
+    }
+
+    .note {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    a.back-home {
+      display: inline-block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      background-color: #3b82f6;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      font-family: 'Comfortaa', cursive, sans-serif;
+      max-width: 150px;
+      text-align: center;
+      display: block;
+    }
+
+    a.back-home:hover {
+      background-color: #2563eb;
+    }
+
+    @media (max-width: 768px) {
+      .page-wrapper {
+        flex-direction: column;
+      }
+      .left-side {
+        height: 200px;
+        padding: 10px;
+      }
+      .left-side .friendly-text {
+        max-width: 100%;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Karhali Machinery Store</h1>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="dealership.html">Dealership</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html">Login</a>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="left-side">
+      <div class="friendly-text">
+        <strong>Welcome to Karhali Machinery Store’s Dealership Family!</strong><br><br>
+        We’re really excited to invite passionate and hardworking people like you to join our dealership program. Here, it’s not just about selling machinery — it’s about growing together, sharing success, and building strong relationships.<br><br>
+        As a dealer with us, you’ll get access to a wide range of quality machines at great prices, along with all the support you need to help your business thrive. From training to marketing tips, we’re here to help you every step of the way.<br><br>
+        Whether you’re starting fresh or already running a business, we believe in teamwork and trust. Together, we can make sure your customers get the best products and service. Let’s join hands and grow something amazing — we can’t wait to work with you!
+      </div>
+    </div>
+
+    <div class="right-side">
+      <!-- 👇 YEH HAI AAPKA ORIGINAL CODE - BILKUL UNTOUCHED -->
+      <h1>Apply for Dealership</h1>
+      <div class="form-container">
+        <form id="dealershipForm">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+
+          <button type="submit">Send via WhatsApp & Email</button>
+        </form>
+        <div class="note">Your details will be shared on WhatsApp and emailed to us.</div>
+      </div>
+      <!-- ☝️ ORIGINAL CODE YAHI TAK -->
+    </div>
+  </div>
+
+  <a href="index.html" class="back-home">⬅️ Back to Home</a>
+
+  <script>
+    function toggleNav() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+
+    document.getElementById('dealershipForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const whatsappNumber = "9815678002"; // WhatsApp number with country code
+
+      const text = `Dealership Request:%0AName: ${name}%0APhone: ${phone}%0AEmail: ${email}%0AMessage: ${message}`;
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
+
+      const mailtoEmail = "Jpsingla8824@gmail.com";
+      const mailSubject = encodeURIComponent("New Dealership Request");
+      const mailBody = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}`);
+      const mailtoLink = `mailto:${mailtoEmail}?subject=${mailSubject}&body=${mailBody}`;
+
+      window.open(whatsappUrl, '_blank');
+      window.location.href = mailtoLink;
+    });
+  </script>
+
+</body>
+</html>

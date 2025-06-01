@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Karhali Machinery Store!</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #d4fcd4;
+      color: #111;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 3rem;
+      color: #1a202c;
+      text-shadow: 0 0 8px #a7f3d0, 0 0 16px #6ee7b7, 0 0 24px #34d399;
+    }
+
+    .banner {
+      background-image: url('your-banner-image.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+      margin-bottom: 40px;
+      border-radius: 12px;
+    }
+
+    .banner h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .banner p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+
+    .banner button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .banner button:hover {
+      background-color: #2563eb;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .filters input, .filters select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      color: #111;
+    }
+
+    #product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: white;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      color: #111;
+    }
+
+    .product-card h2 {
+      margin: 0 0 10px;
+    }
+
+    .product-card p {
+      margin: 5px 0;
+    }
+
+    .product-card button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    .product-card button:hover {
+      background-color: #2563eb;
+    }
+
+    #cart-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      color: #3b82f6;
+    }
+
+    #cart-link:hover {
+      text-decoration: underline;
+    }
+
+    section.contact-section {
+      background-color: #ffffff;
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    section.contact-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1a202c;
+    }
+
+    section.contact-section label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    section.contact-section input,
+    section.contact-section textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      color: #111;
+      box-sizing: border-box;
+    }
+
+    section.contact-section button {
+      background-color: #3b82f6;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    section.contact-section button:hover {
+      background-color: #2563eb;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      background-color: #34d399;
+      color: #fff;
+      margin-top: 40px;
+      border-radius: 12px;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #2563eb;
+    }
+
+    #whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      font-size: 30px;
+      line-height: 60px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .map-container {
+      max-width: 600px;
+      margin: 40px auto 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+    }
+
+    @media (max-width: 640px) {
+      .filters {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .reviews {
+      margin-top: 20px;
+    }
+
+    .review-list {
+      margin-top: 10px;
+    }
+
+    .review-list p {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 5px 0;
+    }
+
+    /* Navbar styles added */
+    nav.navbar {
+      position: sticky;
+      top: 0;
+      background-color: #34d399;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 0 0 12px 12px;
+      z-index: 1000;
+    }
+
+    nav.navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    nav.navbar a:hover {
+      background-color: #2563eb;
+      color: #fff;
+    }
+
+    @media (max-width: 640px) {
+      nav.navbar {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" aria-label="Primary navigation">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="#contact-section">Contact</a>
+    <a href="dealership.html">Dealership</a>
+  </nav>
+
+  <h1>Welcome to Karhali Machinery Store</h1>
+
+  <div class="banner">
+    <button onclick="window.location.href='shop.html'">Shop Now</button>
+  </div>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option value="machine">Machine</option>
+      <option value="tools">Tools</option>
+      <option value="spare">Spare Parts</option>
+    </select>
+    <select id="sortFilter">
+      <option value="default">Sort By</option>
+      <option value="lowToHigh">Price: Low to High</option>
+      <option value="highToLow">Price: High to Low</option>
+    </select>
+  </div>
+
+  <div id="product-container">
+    <div class="product-card">
+      <img src="image1.jpg" alt="Lathe Machine" style="width:100%; max-height:200px; object-fit:contain; margin-bottom: 10px; border-radius: 8px;" />
+      <h2>Lathe Machine</h2>
+      <p>Category: Machine</p>
+      <p>Rs. 50000</p>
+      <button onclick="addToCart('Lathe Machine', 50000)">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="image2.jpg" alt="Welding Torch" style="width:100%; max-height:200px; object-fit:contain; margin-bottom: 10px; border-radius: 8px;" />
+      <h2>Welding Torch</h2>
+      <p>Category: Tools</p>
+      <p>Rs. 15000</p>
+      <button onclick="addToCart('Welding Torch', 15000)">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="image3.jpg" alt="Spare Parts Set" style="width:100%; max-height:200px; object-fit:contain; margin-bottom: 10px; border-radius: 8px;" />
+      <h2>Spare Parts Set</h2>
+      <p>Category: Spare Parts</p>
+      <p>Rs. 8000</p>
+      <button onclick="addToCart('Spare Parts Set', 8000)">Add to Cart</button>
+    </div>
+  </div>
+
+  <a href="cart.html" id="cart-link">Go to Cart</a>
+
+  <section id="contact-section" class="contact-section">
+    <h2>Contact Us</h2>
+    <form onsubmit="return submitContactForm()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <div class="map-container">
+    <iframe
+      src="https://maps.google.com/maps?q=Karhali%20Machinery%20Store&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Karhali Machinery Store Location"
+    ></iframe>
+  </div>
+
+  <footer>
+    <p>© 2025 Karhali Machinery Store. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Facebook">📘</a>
+      <a href="#" aria-label="Twitter">🐦</a>
+      <a href="#" aria-label="Instagram">📸</a>
+    </div>
+  </footer>
+
+  <div id="whatsapp-btn" title="Chat on WhatsApp" onclick="window.open('https://wa.me/yourwhatsappnumber', '_blank')">📱</div>
+
+  <script>
+    const products = [
+      { name: "Lathe Machine", category: "machine", price: 50000 },
+      { name: "Welding Torch", category: "tools", price: 15000 },
+      { name: "Spare Parts Set", category: "spare", price: 8000 }
+    ];
+
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(name + " added to cart.");
+    }
+
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const sortFilter = document.getElementById("sortFilter");
+    const productContainer = document.getElementById("product-container");
+
+    function filterAndDisplayProducts() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCategory = categoryFilter.value;
+      const sortOption = sortFilter.value;
+
+      let filteredProducts = products.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(searchTerm);
+        const matchesCategory = selectedCategory === "all" || p.category === selectedCategory;
+        return matchesSearch && matchesCategory;
+      });
+
+      if (sortOption === "lowToHigh") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      } else if (sortOption === "highToLow") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+      }
+
+      productContainer.innerHTML = filteredProducts.map(p => `
+        <div class="product-card">
+          <h2>${p.name}</h2>
+          <p>Category: ${p.category.charAt(0).toUpperCase() + p.category.slice(1)}</p>
+          <p>Rs. ${p.price}</p>
+          <button onclick="addToCart('${p.name}', ${p.price})">Add to Cart</button>
+        </div>
+      `).join('');
+    }
+
+    searchInput.addEventListener("input", filterAndDisplayProducts);
+    categoryFilter.addEventListener("change", filterAndDisplayProducts);
+    sortFilter.addEventListener("change", filterAndDisplayProducts);
+
+    filterAndDisplayProducts();
+
+    function submitContactForm() {
+      alert("Thank you for contacting us! We will get back to you shortly.");
+      return false; // prevent form submission
+    }
+  </script>
+</body>
+</html>

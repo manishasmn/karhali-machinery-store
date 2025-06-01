@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Business Store - Login</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 60px 20px 20px; /* navbar ke liye top padding */
+      background-color: #f0fdf4;
+    }
+    /* Navbar styles */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background-color: #065f46;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    .navbar h1 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background-color: #065f46;
+        flex-direction: column;
+        display: none;
+        padding: 10px 0;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+    }
+    /* Login section styles */
+    .login-section {
+      max-width: 400px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .login-section h2 {
+      text-align: center;
+      color: #065f46;
+      margin-bottom: 20px;
+    }
+    .login-section label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #065f46;
+    }
+    .login-section input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .login-section button {
+      width: 100%;
+      padding: 12px;
+      background-color: #065f46;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .login-section button:hover {
+      background-color: #047857;
+    }
+    #loginMessage {
+      text-align: center;
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Karhali Machinery Store</h1>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="dealership.html">Dealership</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+    </div>
+  </div>
+
+  <!-- Login Section -->
+  <section class="login-section">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required />
+
+      <button type="submit">Login</button>
+    </form>
+    <p id="loginMessage"></p>
+  </section>
+
+  <script>
+    // Navbar toggle for mobile
+    function toggleNav() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+
+    // Simple login form handler
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const message = document.getElementById('loginMessage');
+
+      // Basic demo login: username=admin, password=1234
+      if(username === 'admin' && password === '1234') {
+        message.style.color = 'green';
+        message.textContent = 'Login successful! Redirecting...';
+        // Redirect after 1.5 sec, for example to dashboard or homepage
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      } else {
+        message.style.color = 'red';
+        message.textContent = 'Invalid username or password.';
+      }
+    });
+  </script>
+</body>
+</html>

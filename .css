@@ -1,0 +1,234 @@
+/* General Styles */
+body {
+  font-family: sans-serif;
+  background-color: #d4fcd4; /* light green background */
+  color: #111;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  color: #4b7c29; /* Dark Mehndi Green */
+  text-shadow: 0 0 8px #a7f3d0, 0 0 16px #6ee7b7, 0 0 24px #34d399;
+}
+
+h1, h2, p {
+  color: #006400 !important; /* Dark Green */
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.filters input, .filters select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  color: #111;
+}
+
+#product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  color: #111;
+}
+
+.product-card h2 {
+  margin: 0 0 10px;
+}
+
+.product-card p {
+  margin: 5px 0;
+}
+
+.product-card button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.product-card button:hover {
+  background-color: #2563eb;
+}
+
+#cart-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #3b82f6;
+}
+
+#cart-link:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form Styles */
+section.contact-section {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+section.contact-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1a202c;
+}
+
+section.contact-section label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+}
+
+section.contact-section input,
+section.contact-section textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  color: #111;
+  box-sizing: border-box;
+}
+
+section.contact-section button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+}
+
+section.contact-section button:hover {
+  background-color: #2563eb;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 20px 10px;
+  background-color: #34d399;
+  color: #fff;
+  margin-top: 40px;
+  border-radius: 12px;
+}
+
+/* Social Media Icons */
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #2563eb;
+}
+
+/* WhatsApp Floating Button */
+#whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 60px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#whatsapp-btn i {
+  font-size: 1.5rem;
+}
+
+/* Google Map Embed */
+.map-container {
+  max-width: 600px;
+  margin: 40px auto 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Review Section Styles */
+.reviews {
+  margin-top: 20px;
+}
+
+.review-list {
+  margin-top: 10px;
+}
+
+.review-list p {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+/* Cart page background color same as main website */
+body {
+  background-color: #d4fcd4 !important;
+  color: #111 !important;
+}

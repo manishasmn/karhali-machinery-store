@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0fdf4;
+      color: #065f46;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .thankyou-box {
+      background-color: #d1fae5;
+      border-radius: 12px;
+      padding: 40px 20px;
+      max-width: 500px;
+      margin: 0 auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #10b981;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #059669;
+    }
+
+    /* Navbar CSS */
+    .navbar {
+      background-color: #2e7d32;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar Start -->
+  <div class="navbar">
+    <a href="index.html">🏠 Home</a>
+    <a href="products.html">🛒 Products</a>
+    <a href="contact.html">📞 Contact</a>
+    <a href="dealership.html">📋 Dealership</a>
+  </div>
+  <!-- ✅ Navbar End -->
+
+  <div class="thankyou-box">
+    <h1>🎉 Shukriya!</h1>
+    <p>Aapka order mil gaya hai. Hum jald hi aap tak pahucha denge.</p>
+    <a href="index.html" class="button">← Wapas Store par</a>
+  </div>
+
+</body>
+</html>

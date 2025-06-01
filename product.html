@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details - KARHALI MACHINERY STORE</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #e6f2e6;
+    }
+    .product-details {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #155724;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    #product-price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #2e7d32;
+    }
+    #product-description {
+      margin-bottom: 25px;
+      font-size: 1rem;
+      line-height: 1.4;
+      color: #333;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #1e7e34;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #155724;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="back-link" href="index.html">← Back to Store</a>
+
+  <div class="product-details">
+    <h1 id="product-name">Loading...</h1>
+    <img id="product-image" src="https://via.placeholder.com/600x400" alt="Product Image" />
+    <p id="product-price"></p>
+    <p id="product-description"></p>
+    <button id="add-to-cart-btn">Add to Cart</button>
+  </div>
+
+  <script>
+    // URL se parameters get karna
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    const price = params.get('price');
+    const desc = params.get('desc');
+
+    // Page par data set karna
+    document.getElementById('product-name').textContent = name || "Unknown Product";
+    document.getElementById('product-price').textContent = price ? "Price: Rs. " + price : "Price not available";
+    document.getElementById('product-description').textContent = desc || "No description available.";
+
+    // Dummy image set (chaaho to future mein customize kar sakte ho)
+    document.getElementById('product-image').src = "https://via.placeholder.com/600x400";
+
+    // Cart add karne ka function
+    document.getElementById('add-to-cart-btn').addEventListener('click', function () {
+      const isLoggedIn = localStorage.getItem("loggedIn");
+
+      if (isLoggedIn !== "true") {
+        alert("Please log in to add items to your cart.");
+        return;
+      }
+
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      cart.push({
+        name: name,
+        price: price,
+        desc: desc
+      });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Product added to cart!");
+    });
+  </script>
+
+</body>
+</html>
