@@ -292,6 +292,183 @@
       color: #fff;
     }
   </style>
+ </style>
+</head>
+<body>
+
+  <nav class="navbar" aria-label="Primary navigation">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="#contact-section">Contact</a>
+    <a href="dealership.html">Dealership</a>
+  </nav>
+
+  <h1>Welcome to Karhali Machinery Store</h1>
+
+  <div class="banner">
+    <button onclick="window.location.href='shop.html'">Shop Now</button>
+  </div>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option value="machine">Machine</option>
+      <option value="tools">Tools</option>
+      <option value="spare">Spare Parts</option>
+      <option value="pump set">Pump set</option>
+    </select>
+    <select id="sortFilter">
+      <option value="default">Sort By</option>
+      <option value="lowToHigh">Price: Low to High</option>
+      <option value="highToLow">Price: High to Low</option>
+    </select>
+  </div>
+
+  <div id="product-container">
+    <!-- Products will be dynamically added here -->
+  </div>
+
+  <a href="cart.html" id="cart-link">Go to Cart</a>
+
+  <section id="contact-section" class="contact-section">
+    <h2>Contact Us</h2>
+    <form onsubmit="return submitContactForm()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <div class="map-container">
+    <iframe
+      src="https://maps.google.com/maps?q=Karhali%20Machinery%20Store&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Karhali Machinery Store Location"
+    ></iframe>
+  </div>
+
+  <footer>
+    <p>© 2025 Karhali Machinery Store. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Facebook">📘</a>
+      <a href="#" aria-label="Twitter">🐦</a>
+      <a href="#" aria-label="Instagram">📸</a>
+    </div>
+  </footer>
+
+  <div id="whatsapp-btn" title="Chat on WhatsApp" onclick="window.open('https://wa.me/yourwhatsappnumber', '_blank')">📱</div>
+
+  <script>
+    const products = [
+      {
+        name: "Agricultural Pump 5HP",
+        category: "pump set",
+        price: 22000,
+        image: "<img src="https://raw.githubusercontent.com/manishasmn/karhali-machinery-store/717f05b3e27ed5266366964eff865127cf78ed2b/5HP.jpg" alt="5HP Machinery Image" />
+
+        description: "High quality perfect for all your needs. Heavy-duty diesel pump.",
+        specs: "Power: 5HP, Type: Diesel, RPM: 1500"
+      },
+      {
+        name: "Agricultural Pump 8HP",
+        category: "pump set",
+        price: 27000,
+        image: "<img src="https://github.com/manishasmn/karhali-machinery-store/blob/main/10%20HP.jpg?raw=true" alt="10 HP Machine" width="300" />",
+        description: "High quality perfect for all your needs. Heavy-duty diesel pump.",
+        specs: "Power: 8HP, Type: Diesel, RPM: 1500"
+      },
+      {
+        name: "Agricultural Pump 10HP",
+        category: "pump set",
+        price: 28000,
+        image: "<img src="https://github.com/manishasmn/karhali-machinery-store/blob/main/10%20HP.jpg?raw=true" alt="10 HP Machine" />
+
+        description: "High quality perfect for all your needs. Heavy-duty diesel pump.",
+        specs: "Power: 10HP, Type: Diesel, RPM: 1500"
+      },
+      {
+        name: "Agricultural Pump 12HP",
+        category: "pump set",
+        price: 29000,
+        image: "12HP.jpg",
+        description: "High quality perfect for all your needs. Heavy-duty diesel pump.",
+        specs: "Power: 12HP, Type: Diesel, RPM: 1500"
+      },
+      {
+        name: "Agricultural Pump 14HP",
+        category: "pump set",
+        price: 35000,
+        image: "14VHP.jpg",
+        description: "High quality perfect for all your needs. Heavy-duty diesel pump.",
+        specs: "Power: 14HP, Type: Diesel, RPM: 1500"
+      }
+    ];
+
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(name + " added to cart.");
+    }
+
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const sortFilter = document.getElementById("sortFilter");
+    const productContainer = document.getElementById("product-container");
+
+    function filterAndDisplayProducts() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCategory = categoryFilter.value;
+      const sortOption = sortFilter.value;
+
+      let filteredProducts = products.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(searchTerm) || p.description.toLowerCase().includes(searchTerm);
+        const matchesCategory = selectedCategory === "all" || p.category === selectedCategory;
+        return matchesSearch && matchesCategory;
+      });
+
+      if (sortOption === "lowToHigh") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      } else if (sortOption === "highToLow") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+      }
+
+      productContainer.innerHTML = filteredProducts.map(p => `
+        <div class="product-card">
+          <img src="${p.image}" alt="${p.name}" />
+          <h2>${p.name}</h2>
+          <p>Category: ${p.category}</p>
+          <p>${p.description}</p>
+          <p>${p.specs}</p>
+          <p>Rs. ${p.price}</p>
+          <button onclick="addToCart('${p.name}', ${p.price})">Add to Cart</button>
+        </div>
+      `).join('');
+    }
+
+    searchInput.addEventListener("input", filterAndDisplayProducts);
+    categoryFilter.addEventListener("change", filterAndDisplayProducts);
+    sortFilter.addEventListener("change", filterAndDisplayProducts);
+
+    filterAndDisplayProducts();
+
+    function submitContactForm() {
+      alert("Thank you for contacting us! We will get back to you shortly.");
+      return false;
+    }
+  </script>
+</body>
+</html>
+
+
+  
 </head>
 <body>
 
