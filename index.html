@@ -87,6 +87,14 @@
       color: #111;
     }
 
+    .product-card img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
     .product-card h2 {
       margin: 0 0 10px;
     }
@@ -234,6 +242,10 @@
         flex-direction: column;
         align-items: center;
       }
+      nav.navbar {
+        flex-direction: column;
+        gap: 12px;
+      }
     }
 
     .reviews {
@@ -279,13 +291,6 @@
       background-color: #2563eb;
       color: #fff;
     }
-
-    @media (max-width: 640px) {
-      nav.navbar {
-        flex-direction: column;
-        gap: 12px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -310,6 +315,7 @@
       <option value="machine">Machine</option>
       <option value="tools">Tools</option>
       <option value="spare">Spare Parts</option>
+        <option value="pump set">Pump set</option>
     </select>
     <select id="sortFilter">
       <option value="default">Sort By</option>
@@ -319,27 +325,7 @@
   </div>
 
   <div id="product-container">
-    <div class="product-card">
-      <img src="image1.jpg" alt="Lathe Machine" style="width:100%; max-height:200px; object-fit:contain; margin-bottom: 10px; border-radius: 8px;" />
-      <h2>Lathe Machine</h2>
-      <p>Category: Machine</p>
-      <p>Rs. 50000</p>
-      <button onclick="addToCart('Lathe Machine', 50000)">Add to Cart</button>
-    </div>
-    <div class="product-card">
-      <img src="image2.jpg" alt="Welding Torch" style="width:100%; max-height:200px; object-fit:contain; margin-bottom: 10px; border-radius: 8px;" />
-      <h2>Welding Torch</h2>
-      <p>Category: Tools</p>
-      <p>Rs. 15000</p>
-      <button onclick="addToCart('Welding Torch', 15000)">Add to Cart</button>
-    </div>
-    <div class="product-card">
-      <img src="image3.jpg" alt="Spare Parts Set" style="width:100%; max-height:200px; object-fit:contain; margin-bottom: 10px; border-radius: 8px;" />
-      <h2>Spare Parts Set</h2>
-      <p>Category: Spare Parts</p>
-      <p>Rs. 8000</p>
-      <button onclick="addToCart('Spare Parts Set', 8000)">Add to Cart</button>
-    </div>
+    <!-- Products will be dynamically added here -->
   </div>
 
   <a href="cart.html" id="cart-link">Go to Cart</a>
@@ -380,9 +366,47 @@
 
   <script>
     const products = [
-      { name: "Lathe Machine", category: "machine", price: 50000 },
-      { name: "Welding Torch", category: "tools", price: 15000 },
-      { name: "Spare Parts Set", category: "spare", price: 8000 }
+      { 
+        name: "Agricultural Pump 5HP", 
+        category: "Water cold", 
+        price: 22000, 
+        image: "5HP.jpg", 
+        description: "High quality perfect for all your needs.Heavy-duty diesel pump"
+        specs:   Power: 5HP, Type: Diesel, RPM: 1500…
+      },
+      { 
+        name: "Agricultural Pump 8HP", 
+        category: "water pump", 
+        price: 27000, 
+        image: "8HP.jpg", 
+        description: "High quality perfect for all your needs.Heavy-duty diesel pump."
+          specs:   Power: 8HP, Type: Diesel, RPM: 1500…
+      },
+      { 
+        name: "Agricultural Pump 10HP", 
+        category: "water pump", 
+        price: 28000, 
+        image: "10HP.jpg", 
+        description: "High quality perfect for all your needs.Heavy-duty diesel pump."
+          specs:   Power: 10HP, Type: Diesel, RPM: 1500…
+      }
+      { 
+        name: "Agricultural Pump 12HP", 
+        category: "water pump", 
+        price: 29000, 
+        image: "12HP.jpg", 
+        description: "High quality perfect for all your needs.Heavy-duty diesel pump."
+          specs:   Power: 12HP, Type: Diesel, RPM: 1500…
+      }
+      { 
+        name: "Agricultural Pump 14HP", 
+        category: "water pump", 
+        price: 35000, 
+        image: "14VHP.jpg", 
+        description: "High quality perfect for all your needs.Heavy-duty diesel pump."
+          specs:   Power: 14HP, Type: Diesel, RPM: 1500…
+      }
+      // Aap yahan apne baki products bhi add kar sakti hain in the same format
     ];
 
     function addToCart(name, price) {
@@ -403,7 +427,7 @@
       const sortOption = sortFilter.value;
 
       let filteredProducts = products.filter(p => {
-        const matchesSearch = p.name.toLowerCase().includes(searchTerm);
+        const matchesSearch = p.name.toLowerCase().includes(searchTerm) || p.description.toLowerCase().includes(searchTerm);
         const matchesCategory = selectedCategory === "all" || p.category === selectedCategory;
         return matchesSearch && matchesCategory;
       });
@@ -416,8 +440,10 @@
 
       productContainer.innerHTML = filteredProducts.map(p => `
         <div class="product-card">
+          <img src="${p.image}" alt="${p.name}" />
           <h2>${p.name}</h2>
           <p>Category: ${p.category.charAt(0).toUpperCase() + p.category.slice(1)}</p>
+          <p>${p.description}</p>
           <p>Rs. ${p.price}</p>
           <button onclick="addToCart('${p.name}', ${p.price})">Add to Cart</button>
         </div>
